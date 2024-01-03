@@ -1,0 +1,18 @@
+
+
+.body h1{
+
+    border: 1px solid #000;
+    text-align: center;
+    background-color: #007553;
+    padding: 1rem 0;
+    font-weight: bold;
+    color:white;
+    font-size: 2rem;
+}
+.mw {
+  max-width: 1200px;
+  width: calc(100% - 4rem);
+  margin: auto;
+
+}

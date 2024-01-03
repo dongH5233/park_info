@@ -1,0 +1,10 @@
+.PageFour > header{
+    background-image: url('/public/img/image4.jpg');
+    height: 350px;
+    width: 100%;
+    position: relative;
+}
+.PageFour{
+    position: relative;
+  
+}

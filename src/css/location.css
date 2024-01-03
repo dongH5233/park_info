@@ -1,0 +1,10 @@
+.PageThree > header{
+    background-image: url('/public/img/image3.jpg');
+    height: 350px;
+    width: 100%;
+    position: relative;
+}
+.PageThree{
+    position: relative;
+  
+}
