@@ -5,9 +5,8 @@ import reportWebVitals from "./reportWebVitals";
 import "./css/common.css";
 import "./css/myreset.css";
 import { BrowserRouter } from "react-router-dom";
-import "./css/header.css"
-
-
+import "./css/header.css";
+import "./css/font.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

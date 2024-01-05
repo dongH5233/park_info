@@ -1,207 +1,90 @@
+import { useEffect, useState } from "react";
+import axios from "axios";
 import "../css/park_information.css";
-import Dobong from "../component/Dodong";
-import { useState } from "react";
-import { Link, Outlet, useNavigate } from "react-router-dom";
+import ParkList from "../component/ParkList";
+import Detail from "../component/Detail";
 export default function Park_information() {
-    let[isOne, setIsOne] = useState(false)
-    let[isTwo, setIsTwo] = useState(false)
-    let[isThree, setIsThree] = useState(false)
-    let[isFour, setIsFour] = useState(false)
-    let[isFive, setIsFive] = useState(false)
-    let navigate = useNavigate();
+  const [activeMenu, setActiveMenu] = useState(0);
+
+  // 강사 : 메뉴 생성 부분이 반복되고 있어요.
+  // api에서 받아온 데이터를 이용해서 메뉴를 생성하는 것이 좋겠죠?
+
+  const [data, setData] = useState(null);
+  const [uniquePZone, setUniquePZone] = useState([]);
+  const [filteredData, setFilteredData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const url = `http://openAPI.seoul.go.kr:8088/58755454426a6a7932396f744b764a/json/SearchParkInfoService/1/132/`;
+      try {
+        const response = await axios.get(url);
+
+        setData(response.data.SearchParkInfoService.row); // 강사 : 초기 데이터 수집.
+        setUniquePZone([
+          ...new Set(
+            response.data.SearchParkInfoService.row.map((item) => item.P_ZONE)
+          ),
+        ]); // 강사 : 중복되지 않는 지역명을 수집.
+        setFilteredData(response.data.SearchParkInfoService.row);
+      } catch (error) {
+        console.error("Error fetching data", error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <>
       <div className="PageTwo">
         <header>
-          <div></div>
+          <div>
+            <img
+              src={`${process.env.PUBLIC_URL}/img/image2.jpg`}
+              alt="이미지2"
+            />
+          </div>
         </header>
         <div className="Park_info_contents">
           <div className="mainSec">
             <div className="park_wrap">
-             
-                  <ul className ="park_loca">
-                    <li>
-                      <div onClick={()=>{
-                        setIsOne(true)
-                        setIsTwo(false)
-                        setIsThree(false)
-                        setIsFour(false)
-                        setIsFive(false)
-                      }}>도심생활권</div>
-                      <ul className ={`sub ${isOne && 'on'}`}>
-                        <li><Link onClick={(e)=>{
-                            e.preventDefault();
-                            navigate('/Park_information/Jung');
-                        }} >중구</Link></li>
-                        <li><Link onClick={(e)=>{
-                            e.preventDefault();
-                            navigate('/Park_information/Jongno');
-                        }}>용산구</Link></li>
-                        <li><Link onClick={(e)=>{
-                            e.preventDefault();
-                            navigate('/Park_information/Yongsan');
-                        }}>종로구</Link></li>
-                      </ul>
+              <ul className="park_loca">
+                {uniquePZone.map((item, i) => {
+                  return (
+                    <li
+                      key={i}
+                      className={activeMenu === i ? "on" : ""} //css에서 on 클래스를 만들어서 활성화 시키기
+                      onClick={() => {
+                        setActiveMenu(i);
+
+                        const newFilteredData = data.filter(
+                          (dataItem) => dataItem.P_ZONE === item // 강사 : 지역명이 일치하는 데이터만 필터링
+                        );
+                        setFilteredData(newFilteredData);
+                      }}
+                    >
+                      {item}
                     </li>
-                    <li>
-                      <div onClick={()=>{
-                        setIsOne(false)
-                        setIsTwo(true)
-                        setIsThree(false)
-                        setIsFour(false)
-                        setIsFive(false)
-                      }}>동북생활권</div>
-                      <ul className ={`sub ${isTwo && 'on'}`}>
-                        <li><Link onClick={(e)=>{
-                            e.preventDefault();
-                            navigate('/Park_information/Dongdaemun');
-                        }} >동대문구</Link></li>
-                        <li><Link onClick={(e)=>{
-                            e.preventDefault();
-                            navigate('/Park_information/Seongdong');
-                        }} >성동구</Link></li>
-                        <li><Link onClick={(e)=>{
-                            e.preventDefault();
-                            navigate('/Park_information/Gwangjin');
-                        }} >광진구</Link></li>
-                        <li><Link onClick={(e)=>{
-                            e.preventDefault();
-                            navigate('/Park_information/Jungnang');
-                        }} >중랑구</Link></li>
-                        <li><Link onClick={(e)=>{
-                            e.preventDefault();
-                            navigate('/Park_information/Seongbuk');
-                        }} >성북구</Link></li>
-                        <li><Link onClick={(e)=>{
-                            e.preventDefault();
-                            navigate('/Park_information/Gangbuk');
-                        }} >강북구</Link></li>
-                        <li><Link onClick={(e)=>{
-                            e.preventDefault();
-                            navigate('/Park_information/Dodong');
-                        }} >도봉구</Link></li>
-                        <li><Link onClick={(e)=>{
-                            e.preventDefault();
-                            navigate('/Park_information/Nowon');
-                        }} >노원구</Link></li>
-                      </ul>
-                    </li>
-                    <li>
-                      <div onClick={()=>{
-                        setIsOne(false)
-                        setIsTwo(false)
-                        setIsThree(true)
-                        setIsFour(false)
-                        setIsFive(false)
-                      }}>동남생활권</div>
-                      <ul className ={`sub ${isThree && 'on'}`}>
-                        <li><Link onClick={(e)=>{
-                            e.preventDefault();
-                            navigate('/Park_information/Seocho');
-                        }} >서초구</Link></li>
-                        <li><Link onClick={(e)=>{
-                            e.preventDefault();
-                            navigate('/Park_information/Gangnam');
-                        }} >강남구</Link></li>
-                        <li><Link onClick={(e)=>{
-                            e.preventDefault();
-                            navigate('/Park_information/Songpa');
-                        }} >송파구</Link></li>
-                        <li><Link onClick={(e)=>{
-                            e.preventDefault();
-                            navigate('/Park_information/Gangdong');
-                        }} >강동구</Link></li>
-                      </ul>
-                    </li>
-                    <li>
-                      <div onClick={()=>{
-                        setIsOne(false)
-                        setIsTwo(false)
-                        setIsThree(false)
-                        setIsFour(true)
-                        setIsFive(false)
-                      }}>서북생활권</div>
-                      <ul className ={`sub ${isFour && 'on'}`}>
-                        <li><Link onClick={(e)=>{
-                            e.preventDefault();
-                            navigate('/Park_information/Eunpyeong');
-                        }} >은평구</Link></li>
-                        <li><Link onClick={(e)=>{
-                            e.preventDefault();
-                            navigate('/Park_information/Seodaemun');
-                        }} >서대문구</Link></li>
-                        <li><Link onClick={(e)=>{
-                            e.preventDefault();
-                            navigate('/Park_information/Mapo');
-                        }} >마포구</Link></li>
-                      </ul>
-                    </li>
-                    <li>
-                      <div onClick={()=>{
-                        setIsOne(false)
-                        setIsTwo(false)
-                        setIsThree(false)
-                        setIsFour(false)
-                        setIsFive(true)
-                      }}>서남생활권</div>
-                      <ul className ={`sub ${isFive && 'on'}`}>
-                        <li><Link onClick={(e)=>{
-                            e.preventDefault();
-                            navigate('/Park_information/Yangcheon');
-                        }} >양천구</Link></li>
-                        <li><Link onClick={(e)=>{
-                            e.preventDefault();
-                            navigate('/Park_information/Gangseo');
-                        }} >강서구</Link></li>
-                        <li><Link onClick={(e)=>{
-                            e.preventDefault();
-                            navigate('/Park_information/Guro');
-                        }} >구로구</Link></li>
-                        <li><Link onClick={(e)=>{
-                            e.preventDefault();
-                            navigate('/Park_information/Geumcheon');
-                        }} >금천구</Link></li>
-                        <li><Link onClick={(e)=>{
-                            e.preventDefault();
-                            navigate('/Park_information/Youndeungpo');
-                        }} >영등포구</Link></li>
-                        <li><Link onClick={(e)=>{
-                            e.preventDefault();
-                            navigate('/Park_information/Dongjak');
-                        }} >동작구</Link></li>
-                        <li><Link onClick={(e)=>{
-                            e.preventDefault();
-                            navigate('/Park_information/Gwanak');
-                        }} >관악구</Link></li>
-                      </ul>
-                      <div className="etc" onClick={()=>{
-                        setIsOne(false)
-                        setIsTwo(false)
-                        setIsThree(false)
-                        setIsFour(false)
-                        setIsFive(false)
-                      }}><Link onClick={(e)=>{
-                        e.preventDefault();
-                        navigate('/Park_information/Etc')
-                      }}>기타</Link></div>
-                    </li>
-                  </ul>
-           
-                <div className="park_contents">
-                    <div >
-                      <h2>공원소개</h2>
-                      <div className="park_menu">
-                        <ul>
-                          <li>공원이름</li>
-                          <li>공원주소</li>
-                          <li>공원사진</li>
-                        </ul>
-                      </div>
-                      <div className="park_zone"></div>
-                    </div>
-                    <Outlet></Outlet>
+                  );
+                })}
+              </ul>
+              <div className="park_contents">
+                <div>
+                  <h2>공원소개</h2>
+                  <div className="park_menu">
+                    <ul>
+                      <li>공원이름</li>
+                      <li>공원주소</li>
+                      <li>공원사진</li>
+                    </ul>
+                  </div>
+                  {/* 강사 : 아래 요소의 역할은 */}
+                  <div className="park_zone">
+                    <ParkList data={filteredData} />
+                    <Detail />
+                  </div>
                 </div>
+              </div>
             </div>
           </div>
         </div>
@@ -209,3 +92,5 @@ export default function Park_information() {
     </>
   );
 }
+
+// 강사 : 아래 컴포넌트는 재사용성을 고려해서 따로 분리하는 했으니 styling은 따로 하세요.

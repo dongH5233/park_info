@@ -6,16 +6,21 @@ export default function Layout() {
   let navigate = useNavigate();
   return (
     <div className="body">
-      <Link onClick={(e)=>{
-        e.preventDefault();
-        navigate('/');
-      }} >
       <h1>도심 속 공원</h1>
+      <Link
+        onClick={(e) => {
+          e.preventDefault();
+          navigate("/");
+        }}
+        >
+        <div>
+          <p class='home'>Home</p>
+        </div>
       </Link>
       <div className="mw">
         <Outlet></Outlet>
-        <Footer />
       </div>
+      <Footer />
     </div>
   );
 }

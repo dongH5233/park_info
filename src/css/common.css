@@ -1,18 +1,28 @@
-
-
-.body h1{
-
-    border: 1px solid #000;
-    text-align: center;
-    background-color: #007553;
-    padding: 1rem 0;
-    font-weight: bold;
-    color:white;
-    font-size: 2rem;
+.body h1 {
+  border: 1px solid #000;
+  text-align: center;
+  background-color: #007553;
+  padding: 1rem 0;
+  font-weight: bold;
+  color: white;
+  font-size: 2rem;
+  position: relative;
 }
 .mw {
   max-width: 1200px;
   width: calc(100% - 4rem);
   margin: auto;
+}
 
+body {
+  background-color: #dbebf1;
+  font-family: "Cafe24Ssurround";
+}
+
+.body div > .home{
+  position: absolute;
+  top:2.5%;
+  right: 19%;
+  color: white;
+  font-weight: bold;
 }

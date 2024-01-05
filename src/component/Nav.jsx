@@ -21,7 +21,7 @@ export default function Nav() {
         >
           <h2>소개</h2>
         </div>
-        <img src="/img/image1.jpg" alt="공원" />
+        <img src={`${process.env.PUBLIC_URL}/img/image1.jpg`} alt="공원" />
         <div className="link">
           <Link
             onClick={(e) => {
@@ -45,7 +45,7 @@ export default function Nav() {
         >
           <h2>공원소개</h2>
         </div>
-        <img src="/img/image2.jpg" alt="공원" />
+        <img src={`${process.env.PUBLIC_URL}/img/image2.jpg`} alt="공원" />
         <div className="link">
           <Link
             onClick={(e) => {
@@ -69,7 +69,7 @@ export default function Nav() {
         >
           <h2>위치검색</h2>
         </div>
-        <img src="/img/image3.jpg" alt="공원" />
+        <img src={`${process.env.PUBLIC_URL}/img/image1.jpg`} alt="공원" />
         <div className="link">
           <Link
             onClick={(e) => {
@@ -93,7 +93,7 @@ export default function Nav() {
         >
           <h2>갤러리</h2>
         </div>
-        <img src="/img/image4.jpg" alt="공원" />
+        <img src={`${process.env.PUBLIC_URL}/img/image1.jpg`} alt="공원" />
         <div className="link">
           <Link
             onClick={(e) => {

@@ -1,9 +1,13 @@
-.PageOne > header {
-  background-image: url("/public/img/image1.jpg");
-  height: 350px;
-  width: 100%;
 
-  position: relative;
+.PageOne > header > div {
+  height: 500px;
+  width: 100%;
+  overflow: hidden;
+}
+.PageOne > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 header::before {
@@ -19,17 +23,17 @@ header::before {
 }
 
 .mainSec {
+
   position: absolute;
   background-color: white;
   z-index: 999;
   width: 100%;
   top: 80%;
-  box-shadow: 0 0 10px 5px;
   padding: 2rem;
 }
 
-.PageOne div > .mainSec{
-    height: 700px;
+.PageOne div > .mainSec {
+  height: 700px;
 }
 
 .mainSec h2 {

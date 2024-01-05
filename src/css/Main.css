@@ -1,131 +1,139 @@
-.nav{
-
-    display: flex;
-    justify-content: space-around;
-    margin-top: 2rem;
-    gap:1rem;
-    border-radius: 1rem;
-    overflow: hidden;
+.nav {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 0.2rem;
+  border-radius: 1rem;
+  overflow: hidden;
 }
 
-.nav .box{
-    height: 200px;
-    position: relative;
-    overflow: hidden;   
-    width: calc(40% / 3);
+.nav .box {
+  height: 200px;
+  position: relative;
+  overflow: hidden;
+  width: calc(100% / 4);
+  transition: 1s;
 }
-.nav .box::before{
-    content: '';
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.5);
-    position: absolute;
+.nav .box::before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: absolute;
 }
-.nav .box .title{
-    cursor: pointer;
-}
-
-.nav .box.on{
-    width: 60%;
+.nav .box .title {
+  cursor: pointer;
 }
 
-
-.nav .box img{
-    width: 100%;
-    height: 100%;
-}
-.nav h2{    
-    font-size: 1.3rem;
-    font-weight: bold;
-    color:white;
-    position: absolute;
-    top:50%;
-    left:23%;
-    transform: translateY(-50%);
-
-}
-.nav .box.on h2{
-    top:20%;
-    left:10%;
-    transform: translateY(-50%);
+.nav .box:hover {
+  width: 60%;
 }
 
-.nav .link{
-    position: absolute;
-    bottom:0;
-    right: 10%;
-    padding: 1.5rem;
-    font-size: 20px;
-    font-weight: bold;
-    color: white;
-    opacity: 0;
-} 
+.nav .box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.nav h2 {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.nav .box:hover h2 {
+  top: 20%;
+  left: 10%;
+  transform: translateY(-50%);
+}
 
-.nav .box.on .link{
-    opacity: 1;
+.nav .link {
+  position: absolute;
+  bottom: 0;
+  right: 10%;
+  padding: 1.5rem;
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+  opacity: 0;
 }
-.sec{
-    margin: 2rem 0 10rem;
-    padding: 1rem 0 10rem;
-    border: 3px solid #000;
-    border-radius: 20px ;
-    
-    
-}
-.sec h2{
-    padding: 0.5rem 2rem 1rem;
-    font-size: 1.5rem;
-    font-weight: bold;
-}
-.sec .wrap{
-    display: flex;
-    width: 100%;
 
-    justify-content: space-between;
+.nav .box:hover .link {
+  opacity: 1;
 }
-.sec .board{
-    position: relative;
-    width: 50%;
+.sec {
+  margin: 2rem 0;
+  padding: 1rem 0 5rem;
+  border: 3px solid #000;
+  border-radius: 20px;
+}
+.sec h2 {
+  padding: 0.5rem 2rem 1rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+.sec .wrap {
+  display: flex;
+  width: 100%;
+
+  justify-content: space-between;
+}
+.sec .board {
+  position: relative;
+  width: 50%;
 }
 .sec .wrap .notice,
-.sec .wrap .event{
-    position: absolute;
-    opacity: 0;
-    display: flex;
-    flex-direction: column;
-    gap:1rem
+.sec .wrap .event {
+  position: absolute;
+  opacity: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
-.sec .wrap .notice.on{
-    opacity: 1;
+.sec .wrap .notice.on {
+  opacity: 1;
 }
-.sec .wrap .event.on{
-    opacity: 1;
+.sec .wrap .event.on {
+  opacity: 1;
 }
-.sec .sec_hd{
-    display: flex;
-    justify-content: space-between;
-    padding: 1rem;
+.sec .sec_hd {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
 }
-.sec .board{
-    padding: 0 2rem;
+.sec .board {
+  padding: 0 2rem;
 }
 .sec .board h3,
-.sec .gallery h3{
-    font-weight: bold;
+.sec .gallery h3 {
+  font-weight: bold;
 }
-.sec .gallery h3{
-    padding: 1rem;
+.sec .gallery h3 {
+  padding: 1rem;
 }
-.sec .gallery{
-    width: 50%;
-    position: relative;
+.sec .gallery {
+  width: 50%;
+  position: relative;
 }
 
-.sec .gallery::before{
-    content: '';
-    width: 1px;
-    height: 210px;
-    border: 1px solid rgba(0,0,0,0.5);
-    position: absolute;
+.sec .gallery::before {
+  content: "";
+  width: 1px;
+  height: 210px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  position: absolute;
+}
+
+.sec button {
+  border-bottom: 2px solid black;
+  background-color: white;
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  top: 33%;
 }

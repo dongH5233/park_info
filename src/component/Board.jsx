@@ -1,4 +1,5 @@
 import { useState } from "react";
+import MainGallery from "./MainGallery";
 
 export default function Board() {
   let [openNotice, setOpenNotice] = useState(true);
@@ -49,16 +50,7 @@ export default function Board() {
           <div className="gallery">
             <h3>갤러리</h3>
             <div>
-              <img
-                src="
-              "
-                alt=""
-              />
-              <img src="" alt="" />
-              <img src="" alt="" />
-              <img src="" alt="" />
-              <img src="" alt="" />
-              <img src="" alt="" />
+              <MainGallery />
             </div>
           </div>
         </div>
